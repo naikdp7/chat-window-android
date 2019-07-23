@@ -223,8 +223,6 @@ public class ChatWindowView extends FrameLayout implements IChatWindowView, View
     private void receiveUploadedData(Intent data) {
         if (isUriArrayUpload()) {
             receiveUploadedUriArray(data);
-        } else if (isVersionPreHoneycomb()) {
-            receiveUploadedUriPreHoneycomb(data);
         } else {
             receiveUploadedUri(data);
         }
@@ -232,10 +230,6 @@ public class ChatWindowView extends FrameLayout implements IChatWindowView, View
 
     private boolean isUriArrayUpload() {
         return mUriArrayUploadCallback != null;
-    }
-
-    private boolean isVersionPreHoneycomb() {
-        return Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB;
     }
 
     @Override
@@ -429,13 +423,6 @@ public class ChatWindowView extends FrameLayout implements IChatWindowView, View
 
         mUriArrayUploadCallback.onReceiveValue(uploadedUris);
         mUriArrayUploadCallback = null;
-    }
-
-    private void receiveUploadedUriPreHoneycomb(Intent data) {
-        Uri uploadedUri = data.getData();
-
-        mUriUploadCallback.onReceiveValue(uploadedUri);
-        mUriUploadCallback = null;
     }
 
     private void receiveUploadedUri(Intent data) {
