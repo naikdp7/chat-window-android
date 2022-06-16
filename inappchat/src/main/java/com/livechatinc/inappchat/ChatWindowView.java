@@ -369,7 +369,7 @@ public class ChatWindowView extends FrameLayout implements IChatWindowView {
             post(new Runnable() {
                 @Override
                 public void run() {
-                    clearSession(getContext());
+                    /*clearSession(getContext());*/
                     chatWindowListener.onChatWindowVisibilityChanged(false);
                 }
             });
